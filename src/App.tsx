@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { IAppState } from "./store/reducer";
 import { incrementAction, decrementAction } from "./store/counter/actions";
 import {
-    incrementAction as incrementActionAsync,
-    decrementAction as decrementActionAsync,
+    incrementActionAsync,
+    decrementActionAsync,
 } from "./store/asyncCounter/actions";
 import "./App.css";
 
