@@ -8,11 +8,12 @@ import "./App.css";
 function App() {
     const counter = useSelector((state: IAppState) => state.counter);
     const dispatch = useDispatch();
-    const increment = useCallback(() => {
-        console.log("incrementAction", incrementAction);
-        dispatch(incrementAction);
-    }, [dispatch]);
-    const decrement = useCallback(() => dispatch(decrementAction), [dispatch]);
+    const increment = useCallback(() => dispatch(incrementAction()), [
+        dispatch,
+    ]);
+    const decrement = useCallback(() => dispatch(decrementAction()), [
+        dispatch,
+    ]);
 
     return (
         <div className="App">
