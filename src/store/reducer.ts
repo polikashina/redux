@@ -1,21 +1,12 @@
-import { createReducer } from "@reduxjs/toolkit";
-import { decrementAction, incrementAction } from "./actions";
+import { combineReducers } from "@reduxjs/toolkit";
+import { counter, ICounterState } from "./counter/reducer";
+import { asyncCounter, IAsyncCounterState } from "./asyncCounter/reducer";
 
 export interface IAppState {
-    counter: number;
+    counter: ICounterState;
+    asyncCounter: IAsyncCounterState;
 }
-
-const defaultState: IAppState = {
-    counter: 0,
-};
-
-export const Reducer = createReducer(defaultState, (builder) => {
-    builder
-        .addCase(incrementAction, (state, action) => {
-            state.counter++;
-        })
-        .addCase(decrementAction, (state, action) => {
-            state.counter--;
-        })
-        .addDefaultCase((state, action) => {});
+export const rootReducer = combineReducers<IAppState>({
+    counter,
+    asyncCounter,
 });
