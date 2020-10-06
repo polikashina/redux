@@ -1,20 +1,12 @@
-import { INCREMENT, DECREMENT, IAction } from "./action-types";
+import { combineReducers } from "redux";
+import { counter, ICounterState } from "./counter/reducer";
+import { asyncCounter, IAsyncCounterState } from "./asyncCounter/reducer";
 
 export interface IAppState {
-    counter: number;
+    counter: ICounterState;
+    asyncCounter: IAsyncCounterState;
 }
-
-const defaultState: IAppState = {
-    counter: 0,
-};
-
-export function Reducer(state = defaultState, payload: IAction): IAppState {
-    switch (payload.type) {
-        case INCREMENT:
-            return { ...state, counter: state.counter + 1 };
-        case DECREMENT:
-            return { ...state, counter: state.counter - 1 };
-        default:
-            return state;
-    }
-}
+export const rootReducer = combineReducers<IAppState>({
+    counter,
+    asyncCounter,
+});
