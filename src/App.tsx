@@ -17,9 +17,11 @@ function App() {
     const dispatch = useDispatch();
 
     const increment = useCallback(() => {
-        dispatch(incrementAction);
+        dispatch(incrementAction());
     }, [dispatch]);
-    const decrement = useCallback(() => dispatch(decrementAction), [dispatch]);
+    const decrement = useCallback(() => dispatch(decrementAction()), [
+        dispatch,
+    ]);
 
     const incrementThunk = useCallback(() => dispatch(incrementActionAsync()), [
         dispatch,

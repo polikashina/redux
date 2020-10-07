@@ -1,14 +1,4 @@
-import {
-    IIncrementAction,
-    IDecrementAction,
-    INCREMENT,
-    DECREMENT,
-} from "./action-types";
+import { createAction } from "redux-act";
 
-export const incrementAction: IIncrementAction = {
-    type: INCREMENT,
-};
-
-export const decrementAction: IDecrementAction = {
-    type: DECREMENT,
-};
+export const incrementAction = createAction("increment");
+export const decrementAction = createAction("decrement");
