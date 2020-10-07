@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import logo from "./logo.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { IAppState } from "./store/reducer";
-import { incrementAction, decrementAction } from "./store/counter/actions";
+import { counterSlice } from "./store/counter/reducer";
 import {
     incrementActionAsync,
     decrementActionAsync,
@@ -15,10 +15,14 @@ function App() {
         (state: IAppState) => state.asyncCounter.counter
     );
     const dispatch = useDispatch();
-    const increment = useCallback(() => dispatch(incrementAction()), [
+    const { actions } = counterSlice;
+    const { increment, decrement } = actions;
+    const handleIncrement = useCallback(() => dispatch(increment()), [
         dispatch,
+        increment,
     ]);
-    const decrement = useCallback(() => dispatch(decrementAction()), [
+    const handleDecrement = useCallback(() => dispatch(decrement()), [
+        decrement,
         dispatch,
     ]);
 
@@ -37,8 +41,8 @@ function App() {
                     Counter <b>{counter}</b>
                 </p>
                 <p>
-                    <button onClick={increment}>+</button>
-                    <button onClick={decrement}>-</button>
+                    <button onClick={handleIncrement}>+</button>
+                    <button onClick={handleDecrement}>-</button>
                 </p>
                 <p>
                     Counter async <b>{counterAsync}</b>

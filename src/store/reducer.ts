@@ -1,4 +1,4 @@
-import { counter, ICounterState } from "./counter/reducer";
+import { counterSlice, ICounterState } from "./counter/reducer";
 import { asyncCounter, IAsyncCounterState } from "./asyncCounter/reducer";
 import { configureStore } from "@reduxjs/toolkit";
 
@@ -9,7 +9,7 @@ export interface IAppState {
 
 export const store = configureStore({
     reducer: {
-        counter: counter.reducer,
+        counter: counterSlice.reducer,
         asyncCounter: asyncCounter.reducer,
     },
 });
